@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobs_Challenge | Colegio San Agustin</title>
+  
+  <style>
+  /* GLOBAL STYLES */
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #faf7f2;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* LINKS */
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(90deg, #ff00e6, #f22c7b);
+    color: #fff;
+  }
+
+    /* TOP BAR */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 8px 25px;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+  }
+
+  .top-bar a {
+    color: #fff;
+    margin: 5px 10px;
+    transition: opacity 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .top-bar a:hover,
+  .top-bar a:active {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+
+  /* HAMBURGER ICON */
+  .hamburger {
+    display: none;
+    font-size: 28px;
+    color: white;
+    padding: 10px 25px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+    user-select: none;
+  }
+
+  /* RESPONSIVE STYLES */
+  @media (max-width: 900px) {
+    .hamburger {
+      display: block;
+    }
+
+    .top-bar {
+      flex-direction: column;
+      text-align: center;
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+    }
+
+    .top-bar.show {
+      max-height: 600px; /* enough space for links */
+      opacity: 1;
+      padding: 10px 0;
+    }
+
+    .top-bar div {
+      width: 100%;
+    }
+
+    .top-bar a {
+      display: block;
+      padding: 8px 0;
+    }
+
+    .top-bar input {
+      margin-top: 10px;
+      width: 80%;
+    }
+  }
+  
+    /* 🌈 RAINBOW NAVIGATION BAR */
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px 20px;
+    background: linear-gradient(270deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff1493);
+    background-size: 600% 600%;
+    animation: rainbowFlow 10s ease infinite;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+  }
+
+  @keyframes rainbowFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  nav img {
+    height: 70px;
+    margin: 8px 25px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 12px #fff, 0 0 18px #ff00ff;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    flex-shrink: 0;
+  }
+
+  nav img:hover {
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0 0 25px #00ffff, 0 0 40px #ff80ff;
+  }
+
+  /* NAV LINKS */
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav ul li {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  nav ul li a:hover,
+  nav ul li a:active {
+    background: #fff;
+    color: #8a2be2;
+    box-shadow: 0 0 10px #fff, 0 0 20px #ff00ff;
+    transform: translateY(-3px);
+  }
+
+  /* ============================= */
+  /* 📱 RESPONSIVE DESIGN */
+  /* ============================= */
+
+  /* Tablets and below */
+  @media (max-width: 900px) {
+    .top-bar {
+      flex-direction: column;
+      text-align: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    nav {
+      flex-direction: column;
+      padding: 10px 15px;
+    }
+
+    nav img {
+      height: 65px;
+      margin: 10px 0;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      padding: 0;
+    }
+
+    nav ul li a {
+      width: 85%;
+      margin: 0 auto;
+      font-size: 16px;
+      padding: 12px 0;
+      text-align: center;
+      touch-action: manipulation;
+    }
+  }
+
+  /* Mobile phones */
+  @media (max-width: 480px) {
+    .top-bar {
+      font-size: 12px;
+      padding: 10px 10px;
+    }
+
+    nav img {
+      height: 55px;
+    }
+
+    nav ul li a {
+      font-size: 15px;
+      width: 90%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  /* Large desktops */
+  @media (min-width: 1200px) {
+    nav ul li a {
+      font-size: 18px;
+      padding: 12px 25px;
+    }
+
+    nav img {
+      height: 85px;
+    }
+  }
+
+    /* MAIN CONTENT */
+    main {
+      flex: 1;
+      padding: 20px 30px;
+    }
+
+    main h1 {
+      color: #5e2ced;
+      margin-bottom: 10px;
+    }
+
+    main p {
+      color: #444;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    /* CONTAINER (job list + details) */
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      border-top: 2px solid #eee;
+      margin-top: 20px;
+    }
+
+    /* LEFT PANEL */
+    .job-list {
+      width: 65%;
+      background: #ed3475;
+      overflow-y: auto;
+      border-right: 2px solid #eee;
+      padding: 20px;
+    }
+
+    .job {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .job:hover {
+      background: #f4f0ff;
+      transform: translateY(-2px);
+    }
+
+    .job.active {
+      border-left: 5px solid #5e2ced;
+      background: #f4f0ff;
+    }
+
+    .job-title {
+      color: #5e2ced;
+      font-weight: bold;
+      font-size: 1.05em;
+    }
+
+    .job-company {
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .job-summary {
+      font-size: 0.9em;
+      color: #444;
+      margin-top: 8px;
+    }
+
+    /* RIGHT PANEL */
+    .job-details {
+      width: 35%;
+      background: #fafaff;
+      padding: 30px;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .job-details.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .job-details h2 {
+      color: #5e2ced;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .job-details p {
+      font-size: 0.95em;
+      color: #333;
+      margin: 8px 0;
+    }
+
+    .apply-btn {
+      background: #5e2ced;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.95em;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .apply-btn:hover {
+      background: #4723c7;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      width: 360px;
+      max-width: 90%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    .modal-content h3 {
+      color: #5e2ced;
+      margin-bottom: 10px;
+    }
+
+    .modal-content input, .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
+
+    .submit-btn {
+      background: #5e2ced;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #4723c7;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #2c2c54;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer-col h4 {
+      color: #ffc107;
+      margin-bottom: 8px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 4px 0;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: #ffc107;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+      .job-list, .job-details {
+        width: 100%;
+        height: 50vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+ 
+  <header>
+  <!-- Hamburger icon (shows only on mobile) -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar" id="topBar">
+    <div>
+      <a href="index.html">HOME</a>
+      <a href="https://csa.edu.ph/activities/">ACTIVITIES</a>
+      <a href="Adminitration.html">ADMINISTRATION</a>
+      <a href="https://csa.edu.ph/vision-and-mission/">VISION & MISSION</a>
+      <a href="https://csa.edu.ph/about/">THE AUGUSTINIANS</a>
+      <a href="https://csa.edu.ph/directory/">DIRECTORY</a>
+      <a href="Contact.html">CONTACT</a>
+      <a href="https://csa.edu.ph/online-bookstore/">ONLINE BOOKSTORE</a>
+      <a href="Login.html">LOGIN</a>
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Search CSA"
+        style="padding: 5px; border: none; border-radius: 3px"
+      />
+    </div>
+  </div>
+
+    <nav>
+      <ul>
+        <li><a href="Admission.html">ADMISSION</a></li>
+        <li><a href="Virtual%20Tour.html">VIRTUAL TOUR</a></li>
+        <li><a href="https://csa.edu.ph/prospectus/">PROSPECTUS</a></li>
+        <li><img src="https://www.bing.com/th/id/OIP.Mc8Cl_WRG3BxQu6YxzjhHQAAAA?w=171&h=211&c=8&rs=1&qlt=90&o=6&cb=12&dpr=1.3&pid=3.1&rm=2" alt="CSA Logo"></li>
+        <li><a href="Registrar.html">REGISTRAR</a></li>
+        <li><a href="https://csa.edu.ph/rectors-corner/">RECTOR'S CORNER</a></li>
+        <li><a href="Jobs.html">JOBS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+ <main>
+  <h1 style="text-align: center; color: #5e2ced; margin-bottom: 20px;">Jobs</h1>
+  <h2 style="text-align: left; color: #9103fe;">Available Job Positions</h2>
+  </p>
+      Be part of a vibrant community where passion meets purpose. At Colegio San Agustin – Makati, we value innovation, service, and growth.
+  </p>
+      Work alongside dedicated professionals in shaping young minds, while enriching your career in a supportive, faith-centered environment. Your journey starts here!
+  </p>
+    <div class="container">
+      <div class="job-list" id="jobList"></div>
+      <div class="job-details" id="jobDetails"></div>
+    </div>
+  </main>
+
+  <!-- APPLICATION MODAL -->
+  <div class="modal" id="applicationModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 id="modalJobTitle">Apply for Job</h3>
+      <form id="applicationForm" onsubmit="submitApplication(event)">
+        <input type="text" id="applicantName" placeholder="Full Name" required />
+        <input type="email" id="applicantEmail" placeholder="Email Address" required />
+        <textarea id="applicantMessage" placeholder="Why are you a good fit?" rows="4" required></textarea>
+        <button type="submit" class="submit-btn">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-col">
+      <img src="https://th.bing.com/th/id/OIP.zhSakopSVn08fHj1o9BpeQHaHa?w=179&h=180&c=7&r=0&o=7" alt="CSA Logo" style="height:50px;"><br>
+      <strong>Colegio San Agustin</strong>
+      <p>Palm Ave, Dasmariñas Makati, Metro Manila</p>
+      <p><i>Anima una et cor unum in Deum</i></p>
+      <p>&copy; 2024 Colegio San Agustin – ICT & Media Department</p>
+    </div>
+    <div class="footer-col">
+      <h4>For Inquiries:</h4>
+      <p>899-10-100</p>
+      <h4>Admissions:</h4>
+      <p>899-10-123<br>899-10-124</p>
+      <h4>Registrar:</h4>
+      <p>899-10-100<br>899-10-110</p>
+    </div>
+    <div class="footer-col">
+      <h4>Website</h4>
+      <a href="https://csa.edu.ph/privacy-policy/">Privacy Policy</a>
+      <a href="https://csa.edu.ph/sitemap">Site Map</a>
+    </div>
+    <div class="footer-col">
+      <h4>Social Media</h4>
+      <a href="https://twitter.com/csamakati">Twitter</a>
+      <a href="https://web.facebook.com/csamakatiofficial/">Facebook</a>
+      <a href="https://www.instagram.com/colegio_san_agustin_makati/">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+  const hamburger = document.getElementById("hamburger");
+  const topBar = document.getElementById("topBar");
+
+  hamburger.addEventListener("click", () => {
+    topBar.classList.toggle("show");
+  });
+</script>
+  
+  <script>
+    // JOB DATA
+    const jobs = [
+      { title: 'Graphic Designer', company: 'Design Co.', location: 'Austin, TX', department: 'Design', description: 'Creative Graphic Designer to produce engaging visual content.' },
+      { title: 'DevOps Engineer', company: 'CloudWorks', location: 'Seattle, WA', department: 'Engineering', description: 'Looking for a DevOps Engineer to automate and scale infrastructure.' },
+      { title: 'Content Strategist', company: 'Creative Solutions', location: 'Chicago, IL', department: 'Marketing', description: 'Develop and execute content strategy across platforms.' },
+      { title: 'Frontend Developer', company: 'NextGen Tech', location: 'Remote', department: 'Engineering', description: 'Seeking a frontend developer with React experience for remote projects.' },
+      { title: 'Visual Designer', company: 'Design Co.', location: 'Los Angeles, CA', department: 'Design', description: 'Create compelling visuals and brand assets for digital campaigns.' },
+      { title: 'Backend Developer', company: 'CodeCrafters', location: 'Denver, CO', department: 'Engineering', description: 'Backend developer needed with Node.js and MongoDB experience.' },
+      { title: 'Social Media Manager', company: 'Buzz Marketing', location: 'Miami, FL', department: 'Marketing', description: 'Manage social media strategy and grow brand presence.' },
+      { title: 'Interaction Designer', company: 'Design Co.', location: 'Portland, OR', department: 'Design', description: 'Looking for an Interaction Designer with strong prototyping skills.' },
+      { title: 'Full Stack Engineer', company: 'NextGen Tech', location: 'Remote', department: 'Engineering', description: 'Work across the full stack to develop scalable web apps.' },
+      { title: 'Email Marketing Specialist', company: 'Creative Solutions', location: 'Boston, MA', department: 'Marketing', description: 'Create, test, and optimize email campaigns for lead gen.' },
+      { title: 'Motion Graphics Designer', company: 'Design Co.', location: 'Atlanta, GA', department: 'Design', description: 'Produce engaging motion content for digital platforms.' },
+      { title: 'QA Engineer', company: 'Tech Innovators', location: 'Phoenix, AZ', department: 'Engineering', description: 'Write test plans and automate regression testing workflows.' },
+      { title: 'SEO Specialist', company: 'Buzz Marketing', location: 'New York, NY', department: 'Marketing', description: 'Improve search rankings and optimize content strategy.' },
+      { title: 'Mobile App Designer', company: 'Design Co.', location: 'San Diego, CA', department: 'Design', description: 'Design intuitive mobile interfaces and user flows.' },
+      { title: 'Machine Learning Engineer', company: 'CloudWorks', location: 'Austin, TX', department: 'Engineering', description: 'Build intelligent systems using ML and AI models.' }
+    ];
+
+    const jobList = document.getElementById("jobList");
+    jobs.forEach(job => {
+      const div = document.createElement("div");
+      div.className = "job";
+      div.innerHTML = `
+        <div class="job-title">${job.title}</div>
+        <div class="job-company">${job.company} • ${job.location}</div>
+        <div class="job-summary">${job.description}</div>
+      `;
+      div.onclick = (e) => showDetails(e, job);
+      jobList.appendChild(div);
+    });
+
+    function showDetails(event, job) {
+      const details = document.getElementById("jobDetails");
+      details.innerHTML = `
+        <h2>${job.title}</h2>
+        <p><strong>Company:</strong> ${job.company}</p>
+        <p><strong>Location:</strong> ${job.location}</p>
+        <p><strong>Department:</strong> ${job.department}</p>
+        <p>${job.description}</p>
+        <button class="apply-btn" onclick="openModal('${job.title}')">Apply Now</button>
+      `;
+      details.classList.add("visible");
+      document.querySelectorAll(".job").forEach(j => j.classList.remove("active"));
+      event.currentTarget.classList.add("active");
+    }
+
+    function openModal(jobTitle) {
+      document.getElementById("applicationModal").style.display = "flex";
+      document.getElementById("modalJobTitle").innerText = `Apply for ${jobTitle}`;
+    }
+
+    function closeModal() {
+      document.getElementById("applicationModal").style.display = "none";
+    }
+
+    function submitApplication(event) {
+      event.preventDefault();
+      const name = document.getElementById("applicantName").value;
+      alert(`Thank you, ${name}! Your application has been submitted.`);
+      document.getElementById("applicationForm").reset();
+      closeModal();
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById("applicationModal");
+      if (e.target === modal) closeModal();
+    };
+  </script>
+</body>
+</html>
